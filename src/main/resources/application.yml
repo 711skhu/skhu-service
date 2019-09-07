@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    include:
+      - datasource
+  jpa:
+    show-sql: true
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
+      hibernate.globally_quoted_identifiers: true
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
