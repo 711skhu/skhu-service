@@ -24,7 +24,8 @@ repositories {
 
 dependencies {
     // web
-    implementation 'org.springframework.boot:spring-boot-starter-security'
+//    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'javax.servlet:servlet-api:2.5'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 

@@ -11,7 +11,6 @@ import com.shouwn.com.skhuservice.web.ApiResponse;
 import com.shouwn.com.skhuservice.web.CommonResponse;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,7 +25,6 @@ public class RentalController {
 		this.requestRentalService = requestRentalService;
 	}
 
-	@PreAuthorize("isAuthenticated()")
 	@GetMapping("buildings/{buildingNumber}/classrooms")
 	public ApiResponse<?> getClassRoomList(@PathVariable int buildingNumber, HttpSession session) {
 
@@ -44,7 +42,6 @@ public class RentalController {
 				.build();
 	}
 
-	@PreAuthorize("isAuthenticated()")
 	@GetMapping("classrooms/{classroomNumber}/{rentalDate}/rentalList")
 	public ApiResponse<?> getRentalList(@PathVariable(value = "classroomNumber") String classroomNumber, @PathVariable(value = "rentalDate") String rentalDate, HttpSession session) {
 
@@ -62,7 +59,6 @@ public class RentalController {
 				.build();
 	}
 
-	@PreAuthorize("isAuthenticated()")
 	@PostMapping("requestRental")
 	public ApiResponse<?> requestRental(@RequestBody RentalRequest rentalRequest, HttpSession session) {
 

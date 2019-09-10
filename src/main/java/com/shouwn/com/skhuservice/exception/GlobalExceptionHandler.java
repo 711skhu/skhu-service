@@ -10,7 +10,6 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -27,14 +26,6 @@ public class GlobalExceptionHandler {
 
 		return CommonResponse.builder()
 				.status((HttpStatus) attributes.get("code"))
-				.message(e.getMessage())
-				.build();
-	}
-
-	@ExceptionHandler(AccessDeniedException.class)
-	public ApiResponse AccessDeniedExceptionHandler(AccessDeniedException e) {
-		return CommonResponse.builder()
-				.status(HttpStatus.UNAUTHORIZED)
 				.message(e.getMessage())
 				.build();
 	}

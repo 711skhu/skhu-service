@@ -13,7 +13,6 @@ import com.shouwn.com.skhuservice.web.CommonResponse;
 import org.apache.commons.lang3.StringUtils;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -29,7 +28,6 @@ public class UserController {
 		this.userRentalListService = userRentalListService;
 	}
 
-	@PreAuthorize("isAuthenticated()")
 	@PostMapping("login")
 	public ApiResponse<?> login(@RequestBody UserLoginRequest loginRequest, HttpSession session) {
 
@@ -50,7 +48,6 @@ public class UserController {
 				.build();
 	}
 
-	@PreAuthorize("isAuthenticated()")
 	@GetMapping("rentalList")
 	public ApiResponse<?> rentalList(HttpSession session) {
 		HtmlPage rentalPage = (HtmlPage) session.getAttribute("rentalPage");
@@ -65,7 +62,6 @@ public class UserController {
 				.build();
 	}
 
-	@PreAuthorize("isAuthenticated()")
 	@DeleteMapping("rental/{idx}")
 	public ApiResponse<?> rentalCancel(@PathVariable(value = "idx") int idx, HttpSession session) {
 		HtmlPage rentalPage = (HtmlPage) session.getAttribute("rentalPage");
