@@ -48,25 +48,6 @@ public class UserController {
 				.build();
 	}
 
-	@GetMapping("userName")
-	public ApiResponse<?> userName(HttpSession session) {
-		session.setAttribute("topPage", null);
-		HtmlPage htmlPage = null;
-		htmlPage = connectToRentalPageService.topPage(htmlPage);
-
-		session.setAttribute("topPage",htmlPage); //topPage로 접근했다.
-
-		String userName;
-
-		userName = userService.userNameDisplay(htmlPage);
-
-		return CommonResponse.builder()
-				.status(HttpStatus.OK)
-				.message("사용자 이름 출력 성공")
-				.data(userName)
-				.build();
-	}
-
 	@GetMapping("rentalList")
 	public ApiResponse<?> rentalList(HttpSession session) {
 		HtmlPage rentalPage = (HtmlPage) session.getAttribute("rentalPage");

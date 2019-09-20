@@ -29,18 +29,18 @@ public class ConnectToRentalPageService {
 		}
 	}
 
-	private HtmlPage getPage(HtmlPage mainPage) { //메인페이지로 들어가는 코드
-		HtmlElement frameset = mainPage.getBody(); //frameset 으로 입력 받음
-		DomNode frameNode = frameset.getLastChild().getPreviousSibling(); //마지막 frameset에서 mainFrame 들어와서 leftFrame 입장
+	private HtmlPage getPage(HtmlPage mainPage) {
+		HtmlElement frameset = mainPage.getBody();
+		DomNode frameNode = frameset.getLastChild().getPreviousSibling();
 		HtmlFrame frame = (HtmlFrame) frameNode;
 		HtmlPage page = (HtmlPage) frame.getEnclosedPage();
 
 		return page;
 	}
 
-	private void getLeftFrameBody(HtmlPage mainPage) throws IOException { //메뉴바로 들어왔음
-		HtmlElement mainFrameset = mainPage.getBody(); //leftFrame의 전부를 받기
-		DomNode leftFrameNode = mainFrameset.getFirstChild().getNextSibling();//메뉴바에서 웹서비스 누르고 시설물 대여신청으로 들어가기
+	private void getLeftFrameBody(HtmlPage mainPage) throws IOException {
+		HtmlElement mainFrameset = mainPage.getBody();
+		DomNode leftFrameNode = mainFrameset.getFirstChild().getNextSibling();
 		HtmlFrame leftFrame = (HtmlFrame) leftFrameNode;
 		HtmlPage leftFrameBody = (HtmlPage) leftFrame.getEnclosedPage();
 		clickMenu(leftFrameBody);
@@ -57,24 +57,4 @@ public class ConnectToRentalPageService {
 		return;
 	}
 
-	public HtmlPage topPage(HtmlPage uniMyMainPage) {
-		HtmlPage mainPage = getTopPage(uniMyMainPage);
-		HtmlPage contentPage = getPage(mainPage);
-
-		if (UrlType.RENTALPAGE_URL.getUrl().equals(contentPage.getUrl())) {
-			return contentPage;
-		} else {
-			throw new NotFoundException("사용자 정보 제공 페이지 연결 실패");
-		}
-
-	}
-
-	private HtmlPage getTopPage(HtmlPage topPage) {
-		HtmlElement frameset = topPage.getBody(); //frameset으로 받음
-		DomNode frameNode = frameset.getFirstChild(); //마지막 frameset에서 topframe까지의 접근
-		HtmlFrame frame = (HtmlFrame) frameNode;
-		HtmlPage page = (HtmlPage) frame.getEnclosedPage();
-
-		return page;
-	}
 }
