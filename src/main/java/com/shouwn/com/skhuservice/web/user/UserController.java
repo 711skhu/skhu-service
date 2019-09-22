@@ -29,43 +29,29 @@ public class UserController {
 	}
 
 	@PostMapping("login")
-	public ApiResponse<?> login(@RequestBody UserLoginRequest loginRequest, HttpSession session) {
+	public ApiResponse<?> login(@RequestBody UserLoginRequest loginRequest, UserInfo userInfo, HttpSession session) {
 
 		session.setAttribute("rentalPage", null);
-		HtmlPage htmlPage;
+		HtmlPage htmlPage; HtmlPage nameHtmlPage;
+		String userName;
 
 		if (StringUtils.isBlank(loginRequest.getStudentNumber()) || StringUtils.isBlank(loginRequest.getPassword())) {
 			throw new InvalidParameterException("아이디 혹은 비밀번호를 입력해주세요.");
 		}
 
 		htmlPage = userService.login(loginRequest);
+		nameHtmlPage = connectToRentalPageService.topPage(htmlPage);
+		userName = userService.userNameDisplay(nameHtmlPage,userInfo);
 		htmlPage = connectToRentalPageService.connectToRentalPage(htmlPage);
 
 		session.setAttribute("rentalPage", htmlPage);
 		return CommonResponse.builder()
 				.status(HttpStatus.CREATED)
 				.message("로그인 성공")
-				.build();
-	}
-
-	@GetMapping("userName")
-	public ApiResponse<?> userName(HttpSession session) {
-		session.setAttribute("topPage", null);
-		HtmlPage htmlPage = null;
-		htmlPage = connectToRentalPageService.topPage(htmlPage);
-
-		session.setAttribute("topPage",htmlPage); //topPage로 접근했다.
-
-		String userName;
-
-		userName = userService.userNameDisplay(htmlPage);
-
-		return CommonResponse.builder()
-				.status(HttpStatus.OK)
-				.message("사용자 이름 출력 성공")
 				.data(userName)
 				.build();
 	}
+
 
 	@GetMapping("rentalList")
 	public ApiResponse<?> rentalList(HttpSession session) {
