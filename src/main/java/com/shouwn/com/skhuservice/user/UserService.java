@@ -4,9 +4,9 @@ import java.io.IOException;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlForm;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.*;
 import com.shouwn.com.skhuservice.exception.NotFoundException;
+import com.shouwn.com.skhuservice.web.user.UserInfo;
 import com.shouwn.com.skhuservice.web.user.UserLoginRequest;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
@@ -39,4 +39,21 @@ public class UserService {
 		}
 	}
 
+	public String userNameDisplay(HtmlPage topPage,UserInfo userInfo ) {
+		if (!UrlType.TOPPAGE_URL.getUrl().equals(topPage.getUrl())) {
+			throw new IllegalStateException("잘못된 접근 입니다.");
+		}
+		try {
+
+			DomElement elements = topPage.getFirstByXPath("//span[@id='lblInfo']");
+			String userName = elements.asText().substring(6,9);
+
+			userInfo.setUserName(userName);
+
+			return userName;
+		} catch (Exception e) {
+			return  ExceptionUtils.rethrow(e);
+		}
+
+	}
 }

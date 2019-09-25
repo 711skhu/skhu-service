@@ -57,4 +57,23 @@ public class ConnectToRentalPageService {
 		return;
 	}
 
+	public HtmlPage topPage(HtmlPage uniMyMainPage) {
+		HtmlPage topPage = getTopPage(uniMyMainPage);
+
+		if (UrlType.TOPPAGE_URL.getUrl().equals(topPage.getUrl())) {
+			return topPage;
+		} else {
+			throw new NotFoundException("사용자 정보 제공 페이지 연결 실패");
+		}
+
+	}
+
+	private HtmlPage getTopPage(HtmlPage topPage) {
+		HtmlElement frameset = topPage.getBody();
+		DomNode frameNode = frameset.getFirstChild().getNextSibling();
+		HtmlFrame frame = (HtmlFrame) frameNode;
+		HtmlPage page = (HtmlPage) frame.getEnclosedPage();
+
+		return page;
+	}
 }
