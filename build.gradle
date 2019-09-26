@@ -32,18 +32,18 @@ dependencies {
     // jpa
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'mysql:mysql-connector-java'
-    testCompileOnly 'com.h2database:h2'
 
     // utils
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-    compile 'com.google.guava:guava:27.1-jre'
-    compile 'org.apache.commons:commons-lang3:3.8.1'
+    implementation 'com.google.guava:guava:27.1-jre'
+    implementation 'org.apache.commons:commons-lang3:3.8.1'
 
     // htmlUnit
     implementation 'net.sourceforge.htmlunit:htmlunit:2.34.1'
 
     // test
+    testImplementation 'com.h2database:h2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 //    testImplementation 'org.springframework.security:spring-security-test'
 }
