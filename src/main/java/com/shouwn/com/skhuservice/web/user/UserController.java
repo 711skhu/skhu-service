@@ -32,7 +32,8 @@ public class UserController {
 	public ApiResponse<?> login(@RequestBody UserLoginRequest loginRequest, UserInfo userInfo, HttpSession session) {
 
 		session.setAttribute("rentalPage", null);
-		HtmlPage htmlPage; HtmlPage nameHtmlPage;
+		HtmlPage htmlPage;
+		HtmlPage nameHtmlPage;
 		String userName;
 
 		if (StringUtils.isBlank(loginRequest.getStudentNumber()) || StringUtils.isBlank(loginRequest.getPassword())) {
@@ -41,7 +42,7 @@ public class UserController {
 
 		htmlPage = userService.login(loginRequest);
 		nameHtmlPage = connectToRentalPageService.topPage(htmlPage);
-		userName = userService.userNameDisplay(nameHtmlPage,userInfo);
+		userName = userService.userNameDisplay(nameHtmlPage, userInfo);
 		htmlPage = connectToRentalPageService.connectToRentalPage(htmlPage);
 
 		session.setAttribute("rentalPage", htmlPage);
