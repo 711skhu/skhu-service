@@ -30,10 +30,10 @@ public enum ClassroomType {
 
 	WOLDANGGHALL_3301("3301", "gv시설목록_ctl02_btnSelect", DetailType.PROJECTOR, RoomType.BIG),
 	WOLDANGGHALL_3302("3302", "gv시설목록_ctl03_btnSelect", DetailType.PROJECTOR, RoomType.BIG),
-	WOLDANGGHALL_3501("3501", "gv시설목록_ctl04_btnSelect", DetailType.PROJECTOR, RoomType.SMALL),
-	WOLDANGGHALL_3502("3502", "gv시설목록_ctl05_btnSelect", DetailType.PROJECTOR, RoomType.SMALL),
-	WOLDANGGHALL_3503("3503", "gv시설목록_ctl06_btnSelect", DetailType.PROJECTOR, RoomType.SMALL),
-	WOLDANGGHALL_3504("3504", "gv시설목록_ctl07_btnSelect", DetailType.PROJECTOR, RoomType.SMALL),
+	WOLDANGGHALL_3501("3401", "gv시설목록_ctl04_btnSelect", DetailType.PROJECTOR, RoomType.SMALL),
+	WOLDANGGHALL_3502("3402", "gv시설목록_ctl05_btnSelect", DetailType.PROJECTOR, RoomType.SMALL),
+	WOLDANGGHALL_3503("3501", "gv시설목록_ctl06_btnSelect", DetailType.PROJECTOR, RoomType.SMALL),
+	WOLDANGGHALL_3504("3502", "gv시설목록_ctl07_btnSelect", DetailType.PROJECTOR, RoomType.SMALL),
 
 	LEECHUNHWANHALL_6110("6110", "gv시설목록_ctl02_btnSelect", DetailType.PROJECTOR, RoomType.SPECIAL),
 	LEECHUNHWANHALL_6500("6500", "gv시설목록_ctl03_btnSelect", DetailType.PROJECTOR, RoomType.SPECIAL),
